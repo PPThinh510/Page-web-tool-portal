@@ -138,6 +138,12 @@
     }
     
     /* Contact grid adjustment */
+    .developers-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 40px auto;
+    }
+
     .contact-grid {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
@@ -194,6 +200,15 @@
         padding: 20px 0;
     }
     
+    .developers-grid {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .developer-card {
+        padding: 30px 20px;
+    }
+
     .contact-grid {
         grid-template-columns: 1fr;
     }

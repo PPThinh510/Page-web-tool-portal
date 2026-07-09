@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initAccordion();
     initScrollSpy();
     triggerCounterAnimation();
+    initEmailCopy();
 });
 
 /**
@@ -220,4 +221,36 @@ function triggerCounterAnimation() {
             });
         }
     }, 60);
+}
+
+/**
+ * 8. Copy email to clipboard utility with interactive feedback
+ */
+function initEmailCopy() {
+    const copyBtns = document.querySelectorAll(".copy-email-btn");
+    
+    copyBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const email = btn.getAttribute("data-email");
+            if (!email) return;
+
+            navigator.clipboard.writeText(email).then(() => {
+                // Visual feedback
+                const icon = btn.querySelector("i");
+                if (icon) {
+                    icon.className = "fa-solid fa-check";
+                    btn.classList.add("copied");
+                    btn.setAttribute("title", "Đã sao chép!");
+                    
+                    setTimeout(() => {
+                        icon.className = "fa-regular fa-copy";
+                        btn.classList.remove("copied");
+                        btn.setAttribute("title", "Sao chép email");
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error("Failed to copy email: ", err);
+            });
+        });
+    });
 }
